@@ -15,12 +15,12 @@
 
 global variables means that anywhere in your application you can access them
 
-|              |                                                    |
-| ------------ | -------------------------------------------------- |
-| \_\_dirname  | path to current directory                          |
-| \_\_filename | filename                                           |
-| require      | functiont to use module (CommonJS)                 |
-| module       | info about current module (file)                   |
-| process      | info about env where the program is being executed |
+| Global Variables | Descriptions                                       |
+| ---------------- | -------------------------------------------------- |
+| \_\_dirname      | path to current directory                          |
+| \_\_filename     | filename                                           |
+| require          | functiont to use module (CommonJS)                 |
+| module           | info about current module (file)                   |
+| process          | info about env where the program is being executed |
 
 ## Modules
