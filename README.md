@@ -78,6 +78,8 @@ module.exports = sayHi;
 
 ### Import Module
 
+- [3-modules.js](./3-modules.js)
+
 ```javascript
 const names = require("./4-names");
 const sayHi = require("./5-utils");
@@ -87,42 +89,67 @@ sayHi(names.john);
 sayHi(names.peter);
 ```
 
-## Alternative Syntax
+## Build-in Modules
 
-## EventEmitter
+- OS (Operating System Module)
+- PATH (Path Module)
+- FS (File System Module)
+- HTTP (Http Module)
 
-EventEmitter တွေသည် ၎င်း event ကို emit လုပ်တဲ့ အချိန်မှာ callback function ကို ပြန်ခေါ်ပေးတယ်။
+### OS (Operating System Module)
 
-EventEmitter မှာ လုပ်ဆောင်ချက် နှစ်ခုရှိတယ်။
+1. Information about current user
 
-1. event တစ်ခုကို စောင့်ရန်၊
-2. စောင့်နေတဲ့ event ပေါ်လာရင် callback function ကိုခေါ်ပေးရန်၊
+   ```javascript
+   const os = require("os");
+   const user = os.userInfo();
+   console.log(user);
+   ```
 
-```javascript
-myEmitter("eventName", callback);
-```
+   - result
 
-```javascript
-var event = require("events");
-var myEmitter = new event.EventEmitter();
+   ```text
+   {
+   	uid: 501,
+   	gid: 20,
+   	username: 'zen',
+   	homedir: '/Users/zen',
+   	shell: '/bin/zsh'
+   }
+   ```
 
-myEmitter.on("startWork", function () {
-	console.log("I am start working");
-});
+2. Method returns the system uptime in seconds
 
-myEmitter.emit("startWork");
-```
+   ```javascript
+   console.log(`The System uptime is ${os.uptime()} seconds`);
+   ```
 
-### EventEmitter With Parameter
+   - result
 
-```javascript
-var event = require("events");
+   ```text
+   The System uptime is 534174 seconds
+   ```
 
-var myEmitter = new event.EventEmitter();
+3. Other OS modules
 
-myEmitter.on("donow", function (val) {
-	console.log(val);
-});
+   ```javascript
+   const currentOS = {
+   	name: os.type(),
+   	release: os.release(),
+   	totalMemory: os.totalmem(),
+   	freeMemory: os.freemem(),
+   };
 
-myEmitter.emit("donow", "Hello World");
-```
+   console.log(currentOS);
+   ```
+
+   - result
+
+   ```text
+   	{
+   	name: 'Darwin',
+   	release: '23.1.0',
+   	totalMemory: 8589934592,
+   	freeMemory: 36913152
+   	}
+   ```
