@@ -15,7 +15,7 @@
 
 global variables means that anywhere in your application you can access them
 
-| variables    | description                                        |
+|              |                                                    |
 | ------------ | -------------------------------------------------- |
 | \_\_dirname  | path to current directory                          |
 | \_\_filename | filename                                           |
