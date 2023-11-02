@@ -27,7 +27,7 @@ JavaScript engine သည် JavaScript code ကို run တဲ့ အချိ
 ## Browser vs Node.js
 
 | Browser                 | Node.js                 |
-| ----------------------- | ----------------------- |
+|-------------------------|-------------------------|
 | DOM                     | No DOM                  |
 | Window                  | No Window               |
 | Interactive Application | Server Side Application |
@@ -35,84 +35,54 @@ JavaScript engine သည် JavaScript code ကို run တဲ့ အချိ
 | Fragmentation           | Version                 |
 | ES6 Module              | CommonJS                |
 
-## Global Methods
+## GLOBALS - NO WINDOW
 
-- setTimeOut ( တစ်ခေါက် အလုပ်လုပ်ပေးပြီးရင် ရပ်သွားမယ် )
-- setInterval ( Interval တစ်ခုအတွင်းမှာ အမြဲတမ်း အလုပ်လုပ်နေမယ် )
-- clearInterval
+global variables are anywhere in your application you can access them so no matter how complex my application gets. How nested it gets or whatever. I'll always have access to those variables and again let me repeat these are just some of the variables.
 
-### setTimeOut
+| Global Variables | Description                                        |
+|:-----------------|:---------------------------------------------------|
+| \_\_dirname      | path to current directory                          |
+| \_\_filename     | file name                                          |
+| require          | function to use module (CommonJS)                  |
+| module           | info about current module (file)                   |
+| process          | info about env where the program is being executed |
+
+## Module
+
+## EventEmitter
+
+EventEmitter တွေသည် ၎င်း event ကို emit လုပ်တဲ့ အချိန်မှာ callback function ကို ပြန်ခေါ်ပေးတယ်။
+
+EventEmitter မှာ လုပ်ဆောင်ချက် နှစ်ခုရှိတယ်။
+
+1. event တစ်ခုကို စောင့်ရန်၊
+2. စောင့်နေတဲ့ event ပေါ်လာရင် callback function ကိုခေါ်ပေးရန်၊
 
 ```javascript
-setTimeOut(function () {
- console.log("I have already waited for 3 second.");
-}, 3000);
+myEmitter("eventName", callback);
 ```
 
-### setInterval
-
 ```javascript
-let i = 0;
-setInterval(function () {
- i++;
- console.log(`I have start working! ${i}`);
-}, 1000);
+var event = require("events");
+var myEmitter = new event.EventEmitter();
+
+myEmitter.on("startWork", function () {
+	console.log("I am start working");
+});
+
+myEmitter.emit("startWork");
 ```
 
-### clearInterval
+### EventEmitter With Parameter
 
 ```javascript
-let i = 0;
-const myInterval = setInterval(function () {
- i++;
+var event = require("events");
 
- if (i === 5) clearInterval(myInterval);
- else console.log(`I have start working! ${i}`);
-}, 1000);
-```
+var myEmitter = new event.EventEmitter();
 
-## Function And Function Expression
+myEmitter.on("donow", function (val) {
+	console.log(val);
+});
 
-### Function
-
-```javascript
-function func() {
- console.log("Hello");
-}
-
-func();
-```
-
-### Function Expression
-
-```javascript
-let myFunc = function () {
- console.log("Hello");
-};
-
-myFunc();
-```
-
-## Module Export And Import
-
-### Export Module
-
-- helper.js
-
-```javascript
-var help = function (val) {
- console.log("I will be helping you soon! => " + val);
-};
-
-module.exports = help;
-```
-
-### Import Module
-
-- app.js
-
-```javascript
-var help = require("./helper");
-
-help("Hello World!");
+myEmitter.emit("donow", "Hello World");
 ```
