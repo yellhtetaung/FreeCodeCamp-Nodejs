@@ -261,12 +261,11 @@ sayHi(names.peter);
     const { readFile, writeFile } = require("fs");
     
     readFile("./content/first.txt", "utf-8", (err, result) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    
-    console.log(result);
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(result);
     });
   ```
 
@@ -367,7 +366,7 @@ npm is a package manager for JavaScript.
     - npm i \<packageName> -D
 - global dependency &rarr; use it in any project
     - npm i -g \<packageName>
-    - sudo npm i -g <packageName> (for mac & linux)
+    - sudo npm i -g \<packageName> (for mac & linux)
 
 ### NPM initialization
 
