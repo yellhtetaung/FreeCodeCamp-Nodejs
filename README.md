@@ -121,8 +121,8 @@ sayHi(names.peter);
 2. Method returns the system uptime in seconds
 
    ```javascript
-   const os = require("os");
-   console.log(`The System uptime is ${os.uptime()} seconds`);
+    const os = require("os");
+    console.log(`The System uptime is ${os.uptime()} seconds`);
    ```
 
     - result
@@ -134,26 +134,26 @@ sayHi(names.peter);
 3. Other OS modules
 
    ```javascript
-   const os = require("os");
-   const currentOS = {
-   	name: os.type(),
-   	release: os.release(),
-   	totalMemory: os.totalmem(),
-   	freeMemory: os.freemem(),
-   };
-
-   console.log(currentOS);
+    const os = require("os");
+    const currentOS = {
+    name: os.type(),
+    release: os.release(),
+    totalMemory: os.totalmem(),
+    freeMemory: os.freemem(),
+    };
+    
+    console.log(currentOS);
    ```
 
     - result
 
    ```text
-   	{
-   	name: 'Darwin',
-   	release: '23.1.0',
-   	totalMemory: 8589934592,
-   	freeMemory: 36913152
-   	}
+    {
+    name: 'Darwin',
+    release: '23.1.0',
+    totalMemory: 8589934592,
+    freeMemory: 36913152
+    }
    ```
 
 ### Path Module
@@ -244,7 +244,7 @@ sayHi(names.peter);
     ```
 
    ```javascript
-   const { writeFileSync } = require("fs");
+    const { writeFileSync } = require("fs");
 
     writeFileSync("./content/result-sync.txt", `Here is the result : ${first}, ${second}`, { flag: "a" });
    ```
@@ -254,16 +254,16 @@ sayHi(names.peter);
 - Read File Asynchronously ( return string or buffer )
 
    ```javascript
-   readFile(path, options, callback(err, data));
+    readFile(path, options, callback(err, data));
    ```
 
   ```javascript
-  const { readFile, writeFile } = require("fs");
-
+    const { readFile, writeFile } = require("fs");
+    
     readFile("./content/first.txt", "utf-8", (err, result) => {
     if (err) {
-    console.log(err);
-    return;
+      console.log(err);
+      return;
     }
     
     console.log(result);
