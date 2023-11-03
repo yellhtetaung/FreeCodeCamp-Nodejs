@@ -347,3 +347,31 @@ The differences between asynchronous and synchronous include:
     
     server.listen(3000);
     ```
+
+## NPM
+
+### What is npm
+
+npm is a package manager for JavaScript.
+
+[Documentation of npm](https://docs.npmjs.com/)
+
+### NPM Command
+
+- npm &rarr; global command, comes with node
+- npm --version
+- local dependency &rarr; use it only in this particular project
+    - npm i \<packageName>
+- local development dependency &rarr; use it only in this particular project and development dependencies are not
+  included in production mode
+    - npm i \<packageName> -D
+- global dependency &rarr; use it in any project
+    - npm i -g \<packageName>
+    - sudo npm i -g <packageName> (for mac & linux)
+
+### NPM initialization
+
+- package.json - manifest file (stores important info about project/package)
+- manual approach (create package.json in the root, create properties etc)
+- npm init (step by step, press enter to skip)
+- npm init -y (everything default)
