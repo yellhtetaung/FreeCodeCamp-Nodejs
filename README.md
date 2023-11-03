@@ -28,7 +28,7 @@ JavaScript engine သည် JavaScript code ကို run တဲ့ အချိ
 ## Browser vs Node.js
 
 | Browser                 | Node.js                 |
-| ----------------------- | ----------------------- |
+|-------------------------|-------------------------|
 | DOM                     | No DOM                  |
 | Window                  | No Window               |
 | Interactive Application | Server Side Application |
@@ -43,7 +43,7 @@ nested it gets or whatever. I'll always have access to those variables and again
 the variables.
 
 | Global Variables | Description                                        |
-| :--------------- | :------------------------------------------------- |
+|:-----------------|:---------------------------------------------------|
 | \_\_dirname      | path to current directory                          |
 | \_\_filename     | file name                                          |
 | require          | function to use module (CommonJS)                  |
@@ -106,7 +106,7 @@ sayHi(names.peter);
    console.log(user);
    ```
 
-   - result
+    - result
 
    ```text
     {
@@ -125,7 +125,7 @@ sayHi(names.peter);
    console.log(`The System uptime is ${os.uptime()} seconds`);
    ```
 
-   - result
+    - result
 
    ```text
    The System uptime is 534174 seconds
@@ -133,28 +133,28 @@ sayHi(names.peter);
 
 3. Other OS modules
 
-   ```javascript
-   const os = require("os");
-   const currentOS = {
-     name: os.type(),
-     release: os.release(),
-     totalMemory: os.totalmem(),
-     freeMemory: os.freemem(),
-   };
+    ```javascript
+    const os = require("os");
+    const currentOS = {
+      name: os.type(),
+      release: os.release(),
+      totalMemory: os.totalmem(),
+      freeMemory: os.freemem(),
+    };
+    
+    console.log(currentOS);
+    ```
 
-   console.log(currentOS);
-   ```
+    - result
 
-   - result
-
-   ```text
+    ```text
     {
         name: 'Darwin',
         release: '23.1.0',
         totalMemory: 8589934592,
         freeMemory: 36913152
     }
-   ```
+    ```
 
 ### Path Module
 
@@ -165,7 +165,7 @@ sayHi(names.peter);
    console.log(path.sep);
    ```
 
-   - result
+    - result
 
    ```text
    /
@@ -180,7 +180,7 @@ sayHi(names.peter);
    console.log(filePath);
    ```
 
-   - result
+    - result
 
    ```text
    /content/subfolder/test.txt
@@ -195,7 +195,7 @@ sayHi(names.peter);
    console.log(base);
    ```
 
-   - result
+    - result
 
    ```text
    test.txt
@@ -209,7 +209,7 @@ sayHi(names.peter);
    console.log(absolute);
    ```
 
-   - result
+    - result
 
    ```text
    /Users/zen/Development/Tutorial/Backend/FreeCodeCamp/content/subfolder/test.txt
@@ -231,7 +231,7 @@ sayHi(names.peter);
   console.log(first, second);
   ```
 
-  - result
+    - result
 
   ```text
   Hello this is first text file Hello this is second text file
@@ -239,68 +239,76 @@ sayHi(names.peter);
 
 - Write File Synchronously
 
-  ```javascript
-  writeFielSync(path, data, options);
-  ```
+    ```javascript
+    writeFielSync(path, data, options);
+    ```
 
-  ```javascript
-  const { writeFileSync } = require("fs");
-
-  writeFileSync("./content/result-sync.txt", `Here is the result : ${first}, ${second}`, { flag: "a" });
-  ```
+    ```javascript
+    const { writeFileSync } = require("fs");
+    
+    writeFileSync(
+      "./content/result-sync.txt",
+      `Here is the result : ${first}, ${second}`,
+      { flag: "a" }
+    );
+    ```
 
 ### Fs Module (Async)
 
 - Read File Asynchronously ( return string or buffer )
 
-  ```javascript
-  readFile(path, options, callback(err, data));
-  ```
+    ```javascript
+    readFile(path, options, callback(err, data));
+    ```
 
-  ```javascript
-  const { readFile, writeFile } = require("fs");
-
-  readFile("./content/first.txt", "utf-8", (err, result) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log(result);
-  });
-  ```
-
-- Write File Asynchronously
-
-  ```javascript
-  writeFile(path, data, callback(err));
-  ```
-
-  ```javascript
-  const { readFile, writeFile } = require("fs");
-
-  readFile("./content/first.txt", "utf-8", (err, result) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    const first = result;
-    readFile("./content/second.txt", "utf-8", (err, result) => {
+    ```javascript
+    const { readFile, writeFile } = require("fs");
+    
+    readFile("./content/first.txt", "utf-8", (err, result) => {
       if (err) {
         console.log(err);
         return;
       }
+      console.log(result);
+    });
+    ```
 
-      const second = result;
-      writeFile("./content/result-async.txt", `Here is the result: ${first}, ${second}`, (err) => {
+- Write File Asynchronously
+
+    ```javascript
+    writeFile(path, data, callback(err));
+    ```
+
+    ```javascript
+    const { readFile, writeFile } = require("fs");
+    
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      const first = result;
+      readFile("./content/second.txt", "utf-8", (err, result) => {
         if (err) {
           console.log(err);
           return;
         }
-        console.log("Success!");
+    
+        const second = result;
+        writeFile(
+          "./content/result-async.txt",
+          `Here is the result: ${first}, ${second}`,
+          (err) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            console.log("Success!");
+          },
+        );
       });
     });
-  });
-  ```
+    ```
 
 ### Synchronous Vs Asynchronous
 
@@ -323,29 +331,29 @@ The differences between asynchronous and synchronous include:
 
 - Create Server
 
-  ```javascript
-  http.createServer(options, requestListener);
-  ```
+    ```javascript
+    http.createServer(options, requestListener);
+    ```
 
-  ```javascript
-  const http = require("http");
-
-  const server = http.createServer((req, res) => {
-    if (req.url === "/") {
-      res.end("Welcome to our home page");
-    } else if (req.url === "/about") {
-      res.end("Here is our short history");
-    } else {
-      res.end(`
-      <h1>Oops!</h1>
-      <p>We can't seem to find the page you are looking for</p>
-      <a href="/">Back Home</a>
-      `);
-    }
-  });
-
-  server.listen(3000);
-  ```
+    ```javascript
+    const http = require("http");
+    
+    const server = http.createServer((req, res) => {
+      if (req.url === "/") {
+        res.end("Welcome to our home page");
+      } else if (req.url === "/about") {
+        res.end("Here is our short history");
+      } else {
+        res.end(`
+          <h1>Oops!</h1>
+          <p>We can't seem to find the page you are looking for</p>
+          <a href="/">Back Home</a>
+          `);
+      }
+    });
+    
+    server.listen(3000);
+    ```
 
 ## NPM
 
@@ -360,13 +368,13 @@ npm is a package manager for JavaScript.
 - npm &rarr; global command, comes with node
 - npm --version
 - local dependency &rarr; use it only in this particular project
-  - npm i \<packageName>
+    - npm i \<packageName>
 - local development dependency &rarr; use it only in this particular project and development dependencies are not
   included in production mode
-  - npm i \<packageName> -D
+    - npm i \<packageName> -D
 - global dependency &rarr; use it in any project
-  - npm i -g \<packageName>
-  - sudo npm i -g \<packageName> (for mac & linux)
+    - npm i -g \<packageName>
+    - sudo npm i -g \<packageName> (for mac & linux)
 
 ### NPM initialization
 
@@ -379,102 +387,102 @@ npm is a package manager for JavaScript.
 
 - Read File
 
-  ```javascript
-  const { readFile } = require("fs");
+    ```javascript
+    const { readFile } = require("fs");
+    
+    console.log("start a first task");
+    
+    // Check File Path
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(result);
+      console.log("complete first task");
+    });
+    
+    console.log("starting new task");
+    ```
 
-  console.log("start a first task");
+    - result
 
-  // Check File Path
-  readFile("./content/first.txt", "utf-8", (err, result) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log(result);
-    console.log("complete first task");
-  });
-
-  console.log("starting new task");
-  ```
-
-  - result
-
-  ```text
-  start a first task
-  starting new task
-  Hello this is first text file
-  complete first task
-  ```
+    ```text
+    start a first task
+    starting new task
+    Hello this is first text file
+    complete first task
+    ```
 
 - setTimeout
 
-  ```javascript
-  // Started operating system process
-  console.log("first");
-  setTimeout(() => {
-    console.log("second");
-  }, 0);
-  console.log("third");
-  // Completed and exited operating system process
-  ```
+    ```javascript
+    // Started operating system process
+    console.log("first");
+    setTimeout(() => {
+      console.log("second");
+    }, 0);
+    console.log("third");
+    // Completed and exited operating system process
+    ```
 
-  - result
+    - result
 
-  ```text
-  first
-  third
-  second
-  ```
+    ```text
+    first
+    third
+    second
+    ```
 
 - setInterval
 
-  ```javascript
-  setInterval(() => {
-    console.log("hello world");
-  }, 2000);
-  console.log("I will run first");
-  // process stays alive unless
-  // Kill Process Control + c
-  // unexpected error
-  ```
+    ```javascript
+    setInterval(() => {
+      console.log("hello world");
+    }, 2000);
+    console.log("I will run first");
+    // process stays alive unless
+    // Kill Process Control + c
+    // unexpected error
+    ```
 
-  - result
+    - result
 
-  ```text
-  I will run first
-  hello world
-  hello world
-  ...
-  ```
+    ```text
+    I will run first
+    hello world
+    hello world
+    ...
+    ```
 
 - http
 
-  ```javascript
-  const http = require("http");
+    ```javascript
+    const http = require("http");
+    
+    const server = http.createServer((req, res) => {
+      console.log("request event");
+      res.end("Hello World");
+    });
+    
+    server.listen(3000, () => {
+      console.log("Server is listening on port : 3000...");
+    });
+    ```
 
-  const server = http.createServer((req, res) => {
-    console.log("request event");
-    res.end("Hello World");
-  });
+    - result ( not request )
 
-  server.listen(3000, () => {
-    console.log("Server is listening on port : 3000...");
-  });
-  ```
+    ```text
+    Server is listening on port : 3000...
+    ```
 
-  - result ( not request )
+    - result ( after requested )
 
-  ```text
-  Server is listening on port : 3000...
-  ```
-
-  - result ( after requested )
-
-  ```text
-  Server is listening on port : 3000...
-  request event
-  request event
-  ```
+    ```text
+    Server is listening on port : 3000...
+    request event
+    request event
+    ```
 
 ## Async Patterns
 
@@ -526,8 +534,32 @@ getText("./content/first.txt")
   .catch((err) => console.log(err));
 ```
 
-- Refactor to Async
+### Refactor to Async
 
 ```javascript
+const { readFile } = require("fs");
 
+const getText = (path) => {
+  return new Promise((resolve, reject) => {
+    readFile(path, "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+const start = async () => {
+  try {
+    const first = await getText("./content/first.txt");
+    const second = await getText("./content/second.txt");
+    console.log(first, second);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+start();
 ```
