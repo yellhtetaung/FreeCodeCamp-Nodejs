@@ -2,7 +2,7 @@
 
 ## What is Node.js
 
-A platform allow us to run javaScript on Computer or Server.
+A platform allow us to run JavaScript on Computer or Server.
 
 - Read, Delete, Upload Files
 - Easy Communicate with Database
@@ -28,7 +28,7 @@ JavaScript engine သည် JavaScript code ကို run တဲ့ အချိ
 ## Browser vs Node.js
 
 | Browser                 | Node.js                 |
-| ----------------------- | ----------------------- |
+|-------------------------|-------------------------|
 | DOM                     | No DOM                  |
 | Window                  | No Window               |
 | Interactive Application | Server Side Application |
@@ -43,7 +43,7 @@ nested it gets or whatever. I'll always have access to those variables and again
 the variables.
 
 | Global Variables | Description                                        |
-| :--------------- | :------------------------------------------------- |
+|:-----------------|:---------------------------------------------------|
 | \_\_dirname      | path to current directory                          |
 | \_\_filename     | file name                                          |
 | require          | function to use module (CommonJS)                  |
@@ -70,7 +70,7 @@ module.exports = { john, peter };
 
 ```javascript
 const sayHi = (name) => {
-	console.log(`Hello there ${name}`);
+  console.log(`Hello there ${name}`);
 };
 
 module.exports = sayHi;
@@ -106,7 +106,7 @@ sayHi(names.peter);
    console.log(user);
    ```
 
-   - result
+    - result
 
    ```text
    {
@@ -121,10 +121,11 @@ sayHi(names.peter);
 2. Method returns the system uptime in seconds
 
    ```javascript
+   const os = require("os");
    console.log(`The System uptime is ${os.uptime()} seconds`);
    ```
 
-   - result
+    - result
 
    ```text
    The System uptime is 534174 seconds
@@ -133,6 +134,7 @@ sayHi(names.peter);
 3. Other OS modules
 
    ```javascript
+   const os = require("os");
    const currentOS = {
    	name: os.type(),
    	release: os.release(),
@@ -143,7 +145,7 @@ sayHi(names.peter);
    console.log(currentOS);
    ```
 
-   - result
+    - result
 
    ```text
    	{
@@ -155,3 +157,193 @@ sayHi(names.peter);
    ```
 
 ### Path Module
+
+1. Provides the platform-specific path segment separator
+
+   ```javascript
+   const path = require("path");
+   console.log(path.sep);
+   ```
+
+    - result
+
+   ```text
+   /
+   ```
+
+2. The path.join() method joins all given path segments together using the platform-specific separator as a delimiter,
+   then normalizes the resulting path.
+
+   ```javascript
+   const path = require("path");
+   const filePath = path.join("/content", "subfolder", "test.txt");
+   console.log(filePath);
+   ```
+
+    - result
+
+   ```text
+   /content/subfolder/test.txt
+   ```
+
+3. The path.basename() method returns the last portion of a path
+
+   ```javascript
+   const path = require("path");
+   const filePath = path.join("/content", "subfolder", "test.txt");
+   const base = path.basename(filePath);
+   console.log(base);
+   ```
+
+    - result
+
+   ```text
+   test.txt
+   ```
+
+4. The path.resolve() method resolves a sequence of paths or path segments into an absolute path.
+
+   ```javascript
+   const path = require("path");
+   const absolute = path.resolve(__dirname, "content", "subfolder", "test.txt");
+   console.log(absolute);
+   ```
+
+    - result
+
+   ```text
+   /Users/zen/Development/Tutorial/Backend/FreeCodeCamp/content/subfolder/test.txt
+   ```
+
+### Fs Module (Sync)
+
+- Read File Synchronously ( return string or buffer )
+
+    ```javascript
+    readFileSync(path, options);
+    ```
+
+   ```javascript
+   const { readFileSync } = require("fs");
+   
+   const first = readFileSync("./content/first.txt", "utf-8");
+   const second = readFileSync("./content/second.txt", "utf-8");
+   console.log(first, second);
+   ```
+
+    - result
+
+   ```text
+   Hello this is first text file Hello this is second text file
+   ```
+
+- Write File Synchronously
+
+    ```javascript
+    writeFielSync(path, data, options);
+    ```
+
+   ```javascript
+   const { writeFileSync } = require("fs");
+
+    writeFileSync("./content/result-sync.txt", `Here is the result : ${first}, ${second}`, { flag: "a" });
+   ```
+
+### Fs Module (Async)
+
+- Read File Asynchronously ( return string or buffer )
+
+   ```javascript
+   readFile(path, options, callback(err, data));
+   ```
+
+  ```javascript
+  const { readFile, writeFile } = require("fs");
+
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+    if (err) {
+    console.log(err);
+    return;
+    }
+    
+    console.log(result);
+    });
+  ```
+
+- Write File Asynchronously
+
+    ```javascript
+    writeFile(path, data, callback(err));
+    ```
+
+    ```javascript
+    const { readFile, writeFile } = require("fs");
+    
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      const first = result;
+      readFile("./content/second.txt", "utf-8", (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+    
+        const second = result;
+        writeFile("./content/result-async.txt", `Here is the result: ${first}, ${second}`, (err) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          console.log("Success!");
+        });
+      });
+    });
+    ```
+
+### Synchronous Vs Asynchronous
+
+- **Asynchronous** is a non-blocking architecture, so the execution of one task isn’t dependent on another. Tasks can
+  run simultaneously.
+- **Synchronous** is a blocking architecture, so the execution of each operation depends on completing the one before
+  it. Each task requires an answer before moving on to the next iteration.
+
+The differences between asynchronous and synchronous include:
+
+- **Async** is multi-thread, which means operations or programs can run in parallel.
+- **Sync** is a single-thread, so only one operation or program will run at a time.
+- **Async** is non-blocking, which means it will send multiple requests to a server.
+- **Sync** is blocking — it will only send the server one request at a time and wait for that request to be answered by
+  the server.
+- **Async** increases throughput because multiple operations can run at the same time.
+- **Sync** is slower and more methodical.
+
+### HTTP Module
+
+- Create Server
+
+    ```javascript
+    http.createServer(options, requestListener);
+    ```
+
+    ```javascript
+    const http = require("http");
+
+    const server = http.createServer((req, res) => {
+      if (req.url === "/") {
+        res.end("Welcome to our home page");
+      } else if (req.url === "/about") {
+        res.end("Here is our short history");
+      } else {
+        res.end(`
+        <h1>Oops!</h1>
+        <p>We can't seem to find the page you are looking for</p>
+        <a href="/">Back Home</a>
+        `);
+      }
+    });
+    
+    server.listen(3000);
+    ```
