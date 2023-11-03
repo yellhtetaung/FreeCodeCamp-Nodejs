@@ -109,13 +109,13 @@ sayHi(names.peter);
     - result
 
    ```text
-   {
-   	uid: 501,
-   	gid: 20,
-   	username: 'zen',
-   	homedir: '/Users/zen',
-   	shell: '/bin/zsh'
-   }
+    {
+        uid: 501,
+        gid: 20,
+        username: 'zen',
+        homedir: '/Users/zen',
+        shell: '/bin/zsh'
+    }
    ```
 
 2. Method returns the system uptime in seconds
@@ -136,10 +136,10 @@ sayHi(names.peter);
    ```javascript
     const os = require("os");
     const currentOS = {
-    name: os.type(),
-    release: os.release(),
-    totalMemory: os.totalmem(),
-    freeMemory: os.freemem(),
+      name: os.type(),
+      release: os.release(),
+      totalMemory: os.totalmem(),
+      freeMemory: os.freemem(),
     };
     
     console.log(currentOS);
@@ -149,10 +149,10 @@ sayHi(names.peter);
 
    ```text
     {
-    name: 'Darwin',
-    release: '23.1.0',
-    totalMemory: 8589934592,
-    freeMemory: 36913152
+        name: 'Darwin',
+        release: '23.1.0',
+        totalMemory: 8589934592,
+        freeMemory: 36913152
     }
    ```
 
