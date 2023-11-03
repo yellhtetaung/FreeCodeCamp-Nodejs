@@ -54,7 +54,7 @@ the variables.
 
 ### Export Module
 
-- [4-name.js](./4-names.js)
+- [4-name.js](./04-names.js)
 
 ```javascript
 // local
@@ -66,7 +66,7 @@ const peter = "peter";
 module.exports = { john, peter };
 ```
 
-- [5-utils.js](./5-utils.js)
+- [05-utils.js](./05-utils.js)
 
 ```javascript
 const sayHi = (name) => {
@@ -78,11 +78,11 @@ module.exports = sayHi;
 
 ### Import Module
 
-- [3-modules.js](./3-modules.js)
+- [03-modules.js](./03-modules.js)
 
 ```javascript
-const names = require("./4-names");
-const sayHi = require("./5-utils");
+const names = require("./04-names");
+const sayHi = require("./05-utils");
 
 sayHi("susan");
 sayHi(names.john);
@@ -562,4 +562,113 @@ const start = async () => {
 };
 
 start();
+```
+
+### Node's Native Options
+
+- Not using fs promise API
+
+```javascript
+const { readFile, writeFile } = require("fs");
+const util = require("util");
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(writeFile);
+
+const start = async () => {
+  try {
+    const first = await readFilePromise("./content/first.txt", "utf-8");
+    const second = await readFilePromise("./content/second.txt", "utf-8");
+    await writeFilePromise(
+      "./content/result-mind-grenade.txt",
+      `THIS IS AWESOME : ${first}, ${second}`,
+    );
+    console.log(first, second);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
+```
+
+- using fs promise
+
+```javascript
+const { readFile, writeFile } = require("fs").promises;
+
+const start = async () => {
+  try {
+    const first = await readFile("./content/first.txt", "utf-8");
+    const second = await readFile("./content/second.txt", "utf-8");
+    await writeFile(
+      "./content/result-mind-grenade.txt",
+      `THIS IS AWESOME : ${first}, ${second}`,
+    );
+    console.log(first, second);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
+```
+
+## Events
+
+- Event-Driven Programming
+- Used Heavily in Node.js
+
+### Event Emitter
+
+- create event emitter
+
+```javascript
+const EventEmitter = require("events");
+const customEmitter = new EventEmitter();
+```
+
+- on &rarr; listen for an event
+
+```javascript
+customEmitter.on("response", () => {
+  console.log("data received");
+});
+```
+
+- emit &rarr; emit an event
+
+```javascript
+customEmitter.emit("response");
+```
+
+- result
+
+```text
+data received
+some other logic here
+```
+
+### Event Emitter with Parameters
+
+```javascript
+const EventEmitter = require("events");
+
+const customEmitter = new EventEmitter();
+
+customEmitter.on("response", (name, id) => {
+  console.log(`data received user ${name} with id:${id}`);
+});
+
+customEmitter.on("response", () => {
+  console.log("some other logic here");
+});
+
+customEmitter.emit("response", "john", 34);
+```
+
+- result
+
+```text
+data received user john with id:34
+some other logic here
 ```

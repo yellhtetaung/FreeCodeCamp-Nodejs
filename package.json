@@ -2,7 +2,7 @@
   "name": "freecodecamp",
   "version": "1.0.0",
   "description": "## What is Node.js",
-  "main": "1-intro.js",
+  "main": "01-intro.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
