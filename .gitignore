@@ -1,4 +1,5 @@
 /.idea
 .DS_store
-1-node-tutorial/node_modules
-2-express-tutorial/node_modules
+01-node-tutorial/node_modules
+02-express-tutorial/node_modules
+03-task-manager/node_modules
