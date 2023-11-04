@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 
-const people = require("./final/13-router-people");
-const auth = require("./final/14-router-auth");
+const people = require("./routes/people");
+const auth = require("./routes/auth");
 
 // static assets
 app.use(express.static("./methods-public"));

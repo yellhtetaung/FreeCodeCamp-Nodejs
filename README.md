@@ -28,7 +28,7 @@ JavaScript engine သည် JavaScript code ကို run တဲ့ အချိ
 ## Browser vs Node.js
 
 | Browser                 | Node.js                 |
-|-------------------------|-------------------------|
+| ----------------------- | ----------------------- |
 | DOM                     | No DOM                  |
 | Window                  | No Window               |
 | Interactive Application | Server Side Application |
@@ -43,7 +43,7 @@ nested it gets or whatever. I'll always have access to those variables and again
 the variables.
 
 | Global Variables | Description                                        |
-|:-----------------|:---------------------------------------------------|
+| :--------------- | :------------------------------------------------- |
 | \_\_dirname      | path to current directory                          |
 | \_\_filename     | file name                                          |
 | require          | function to use module (CommonJS)                  |
@@ -788,7 +788,7 @@ messages.
 - DELETE (Delete Data)
 
 | Methods | URL                          | Description                                |
-|---------|------------------------------|--------------------------------------------|
+| ------- | ---------------------------- | ------------------------------------------ |
 | GET     | www.store.com/api/orders     | get all orders                             |
 | POST    | www.store.com/api/orders     | place an order (send data)                 |
 | GET     | www.store.com/api/orders/:id | get single order (path params)             |
@@ -802,7 +802,7 @@ Express.js is fast, unopinionated, minimalist web framework for Node.js.
 ### Express Methods
 
 | Method     | Description                                                                                                                                                        |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | app.get    | handle GET requests                                                                                                                                                |
 | app.post   | handle POST requests                                                                                                                                               |
 | app.put    | handle PUT requests                                                                                                                                                |
@@ -870,7 +870,7 @@ SSR is when you render your website's HTML on the server. This is as opposed to 
 website renders HTML in the browser by manipulating the DOM with JavaScript.
 
 | API        | SSR            |
-|------------|----------------|
+| ---------- | -------------- |
 | API - JSON | SSR - TEMPLATE |
 | SEND DATA  | SEND TEMPLATE  |
 | RES.JSON() | RES.RENDER()   |
@@ -1057,5 +1057,3 @@ app.get("/api/items/", (req, res) => {
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
 ```
-
-##
