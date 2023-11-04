@@ -28,7 +28,7 @@ JavaScript engine သည် JavaScript code ကို run တဲ့ အချိ
 ## Browser vs Node.js
 
 | Browser                 | Node.js                 |
-| ----------------------- | ----------------------- |
+|-------------------------|-------------------------|
 | DOM                     | No DOM                  |
 | Window                  | No Window               |
 | Interactive Application | Server Side Application |
@@ -43,7 +43,7 @@ nested it gets or whatever. I'll always have access to those variables and again
 the variables.
 
 | Global Variables | Description                                        |
-| :--------------- | :------------------------------------------------- |
+|:-----------------|:---------------------------------------------------|
 | \_\_dirname      | path to current directory                          |
 | \_\_filename     | file name                                          |
 | require          | function to use module (CommonJS)                  |
@@ -63,14 +63,14 @@ const secret = "SUPER SECRET";
 const john = "john";
 const peter = "peter";
 
-module.exports = { john, peter };
+module.exports = {john, peter};
 ```
 
 - [05-utils.js](1-node-tutorial/05-utils.js)
 
 ```javascript
 const sayHi = (name) => {
-	console.log(`Hello there ${name}`);
+  console.log(`Hello there ${name}`);
 };
 
 module.exports = sayHi;
@@ -100,15 +100,15 @@ sayHi(names.peter);
 
 1. Information about current user
 
-   ```javascript
-   const os = require("os");
-   const user = os.userInfo();
-   console.log(user);
-   ```
+    ```javascript
+    const os = require("os");
+    const user = os.userInfo();
+    console.log(user);
+    ```
 
-   - result
+    - result
 
-   ```text
+    ```text
     {
         uid: 501,
         gid: 20,
@@ -116,75 +116,75 @@ sayHi(names.peter);
         homedir: '/Users/zen',
         shell: '/bin/zsh'
     }
-   ```
+    ```
 
 2. Method returns the system uptime in seconds
 
-   ```javascript
-   const os = require("os");
-   console.log(`The System uptime is ${os.uptime()} seconds`);
-   ```
+    ```javascript
+    const os = require("os");
+    console.log(`The System uptime is ${os.uptime()} seconds`);
+    ```
 
-   - result
+    - result
 
-   ```text
-   The System uptime is 534174 seconds
-   ```
+    ```text
+    The System uptime is 534174 seconds
+    ```
 
 3. Other OS modules
 
-   ```javascript
-   const os = require("os");
-   const currentOS = {
-   	name: os.type(),
-   	release: os.release(),
-   	totalMemory: os.totalmem(),
-   	freeMemory: os.freemem(),
-   };
+    ```javascript
+    const os = require("os");
+    const currentOS = {
+      name: os.type(),
+      release: os.release(),
+      totalMemory: os.totalmem(),
+      freeMemory: os.freemem(),
+    };
+    
+    console.log(currentOS);
+    ```
 
-   console.log(currentOS);
-   ```
+    - result
 
-   - result
-
-   ```text
-   {
+    ```text
+    {
        name: 'Darwin',
        release: '23.1.0',
        totalMemory: 8589934592,
        freeMemory: 36913152
-   }
-   ```
+    }
+    ```
 
 ### Path Module
 
 1. Provides the platform-specific path segment separator
 
-   ```javascript
-   const path = require("path");
-   console.log(path.sep);
-   ```
+    ```javascript
+    const path = require("path");
+    console.log(path.sep);
+    ```
 
-   - result
+    - result
 
-   ```text
-   /
-   ```
+    ```text
+    /
+    ```
 
 2. The path.join() method joins all given path segments together using the platform-specific separator as a delimiter,
    then normalizes the resulting path.
 
-   ```javascript
-   const path = require("path");
-   const filePath = path.join("/content", "subfolder", "test.txt");
-   console.log(filePath);
-   ```
+    ```javascript
+    const path = require("path");
+    const filePath = path.join("/content", "subfolder", "test.txt");
+    console.log(filePath);
+    ```
 
-   - result
+    - result
 
-   ```text
-   /content/subfolder/test.txt
-   ```
+    ```text
+    /content/subfolder/test.txt
+    ```
 
 3. The path.basename() method returns the last portion of a path
 
@@ -195,7 +195,7 @@ sayHi(names.peter);
    console.log(base);
    ```
 
-   - result
+    - result
 
    ```text
    test.txt
@@ -209,7 +209,7 @@ sayHi(names.peter);
    console.log(absolute);
    ```
 
-   - result
+    - result
 
    ```text
    /Users/zen/Development/Tutorial/Backend/FreeCodeCamp/content/subfolder/test.txt
@@ -231,7 +231,7 @@ sayHi(names.peter);
   console.log(first, second);
   ```
 
-  - result
+    - result
 
   ```text
   Hello this is first text file Hello this is second text file
@@ -239,76 +239,76 @@ sayHi(names.peter);
 
 - Write File Synchronously
 
-  ```javascript
-  writeFielSync(path, data, options);
-  ```
+    ```javascript
+    writeFielSync(path, data, options);
+    ```
 
-  ```javascript
-  const { writeFileSync } = require("fs");
-
-  writeFileSync(
-  	"./content/result-sync.txt",
-  	`Here is the result : ${first}, ${second}`,
-  	{ flag: "a" }
-  );
-  ```
+    ```javascript
+    const {writeFileSync} = require("fs");
+    
+    writeFileSync(
+      "./content/result-sync.txt",
+      `Here is the result : ${first}, ${second}`,
+      {flag: "a"}
+    );
+    ```
 
 ### Fs Module (Async)
 
 - Read File Asynchronously ( return string or buffer )
 
-  ```javascript
-  readFile(path, options, callback(err, data));
-  ```
+    ```javascript
+    readFile(path, options, callback(err, data));
+    ```
 
-  ```javascript
-  const { readFile, writeFile } = require("fs");
-
-  readFile("./content/first.txt", "utf-8", (err, result) => {
-  	if (err) {
-  		console.log(err);
-  		return;
-  	}
-  	console.log(result);
-  });
-  ```
+    ```javascript
+    const {readFile, writeFile} = require("fs");
+    
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(result);
+    });
+    ```
 
 - Write File Asynchronously
 
-  ```javascript
-  writeFile(path, data, callback(err));
-  ```
+    ```javascript
+    writeFile(path, data, callback(err));
+    ```
 
-  ```javascript
-  const { readFile, writeFile } = require("fs");
-
-  readFile("./content/first.txt", "utf-8", (err, result) => {
-  	if (err) {
-  		console.log(err);
-  		return;
-  	}
-  	const first = result;
-  	readFile("./content/second.txt", "utf-8", (err, result) => {
-  		if (err) {
-  			console.log(err);
-  			return;
-  		}
-
-  		const second = result;
-  		writeFile(
-  			"./content/result-async.txt",
-  			`Here is the result: ${first}, ${second}`,
-  			(err) => {
-  				if (err) {
-  					console.log(err);
-  					return;
-  				}
-  				console.log("Success!");
-  			}
-  		);
-  	});
-  });
-  ```
+    ```javascript
+    const {readFile, writeFile} = require("fs");
+    
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      const first = result;
+      readFile("./content/second.txt", "utf-8", (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+    
+        const second = result;
+        writeFile(
+          "./content/result-async.txt",
+          `Here is the result: ${first}, ${second}`,
+          (err) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            console.log("Success!");
+          }
+        );
+      });
+    });
+    ```
 
 ### Synchronous Vs Asynchronous
 
@@ -331,29 +331,29 @@ The differences between asynchronous and synchronous include:
 
 - Create Server
 
-  ```javascript
-  http.createServer(options, requestListener);
-  ```
+    ```javascript
+    http.createServer(options, requestListener);
+    ```
 
-  ```javascript
-  const http = require("http");
-
-  const server = http.createServer((req, res) => {
-  	if (req.url === "/") {
-  		res.end("Welcome to our home page");
-  	} else if (req.url === "/about") {
-  		res.end("Here is our short history");
-  	} else {
-  		res.end(`
+    ```javascript
+    const http = require("http");
+    
+    const server = http.createServer((req, res) => {
+      if (req.url === "/") {
+        res.end("Welcome to our home page");
+      } else if (req.url === "/about") {
+        res.end("Here is our short history");
+      } else {
+        res.end(`
         <h1>Oops!</h1>
         <p>We can't seem to find the page you are looking for</p>
         <a href="/">Back Home</a>
         `);
-  	}
-  });
-
-  server.listen(3000);
-  ```
+      }
+    });
+    
+    server.listen(3000);
+    ```
 
 ## NPM
 
@@ -368,13 +368,13 @@ npm is a package manager for JavaScript.
 - npm &rarr; global command, comes with node
 - npm --version
 - local dependency &rarr; use it only in this particular project
-  - npm i \<packageName>
+    - npm i \<packageName>
 - local development dependency &rarr; use it only in this particular project and development dependencies are not
   included in production mode
-  - npm i \<packageName> -D
+    - npm i \<packageName> -D
 - global dependency &rarr; use it in any project
-  - npm i -g \<packageName>
-  - sudo npm i -g \<packageName> (for mac & linux)
+    - npm i -g \<packageName>
+    - sudo npm i -g \<packageName> (for mac & linux)
 
 ### NPM initialization
 
@@ -387,102 +387,102 @@ npm is a package manager for JavaScript.
 
 - Read File
 
-  ```javascript
-  const { readFile } = require("fs");
+    ```javascript
+    const {readFile} = require("fs");
+    
+    console.log("start a first task");
+    
+    // Check File Path
+    readFile("./content/first.txt", "utf-8", (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(result);
+      console.log("complete first task");
+    });
+    
+    console.log("starting new task");
+    ```
 
-  console.log("start a first task");
+    - result
 
-  // Check File Path
-  readFile("./content/first.txt", "utf-8", (err, result) => {
-  	if (err) {
-  		console.log(err);
-  		return;
-  	}
-  	console.log(result);
-  	console.log("complete first task");
-  });
-
-  console.log("starting new task");
-  ```
-
-  - result
-
-  ```text
-  start a first task
-  starting new task
-  Hello this is first text file
-  complete first task
-  ```
+    ```text
+    start a first task
+    starting new task
+    Hello this is first text file
+    complete first task
+    ```
 
 - setTimeout
 
-  ```javascript
-  // Started operating system process
-  console.log("first");
-  setTimeout(() => {
-  	console.log("second");
-  }, 0);
-  console.log("third");
-  // Completed and exited operating system process
-  ```
+    ```javascript
+    // Started operating system process
+    console.log("first");
+    setTimeout(() => {
+      console.log("second");
+    }, 0);
+    console.log("third");
+    // Completed and exited operating system process
+    ```
 
-  - result
+    - result
 
-  ```text
-  first
-  third
-  second
-  ```
+    ```text
+    first
+    third
+    second
+    ```
 
 - setInterval
 
-  ```javascript
-  setInterval(() => {
-  	console.log("hello world");
-  }, 2000);
-  console.log("I will run first");
-  // process stays alive unless
-  // Kill Process Control + c
-  // unexpected error
-  ```
+    ```javascript
+    setInterval(() => {
+      console.log("hello world");
+    }, 2000);
+    console.log("I will run first");
+    // process stays alive unless
+    // Kill Process Control + c
+    // unexpected error
+    ```
 
-  - result
+    - result
 
-  ```text
-  I will run first
-  hello world
-  hello world
-  ...
-  ```
+    ```text
+    I will run first
+    hello world
+    hello world
+    ...
+    ```
 
 - http
 
-  ```javascript
-  const http = require("http");
+    ```javascript
+    const http = require("http");
+    
+    const server = http.createServer((req, res) => {
+      console.log("request event");
+      res.end("Hello World");
+    });
+    
+    server.listen(3000, () => {
+      console.log("Server is listening on port : 3000...");
+    });
+    ```
 
-  const server = http.createServer((req, res) => {
-  	console.log("request event");
-  	res.end("Hello World");
-  });
+    - result ( not request )
 
-  server.listen(3000, () => {
-  	console.log("Server is listening on port : 3000...");
-  });
-  ```
+    ```text
+    Server is listening on port : 3000...
+    ```
 
-  - result ( not request )
+    - result ( after requested )
 
-  ```text
-  Server is listening on port : 3000...
-  ```
-
-  - result ( after requested )
-
-  ```text
-  Server is listening on port : 3000...
-  request event
-  request event
-  ```
+    ```text
+    Server is listening on port : 3000...
+    request event
+    request event
+    ```
 
 ## Async Patterns
 
@@ -492,73 +492,73 @@ npm is a package manager for JavaScript.
 const http = require("http");
 
 const server = http.createServer((req, res) => {
-	if (req.url === "/") {
-		res.end("Home Page");
-	} else if (req.url === "/about") {
-		// Blocking Code !!!
-		for (let i = 0; i < 1000; i++) {
-			for (let j = 0; j < 1000; j++) {
-				console.log(`${i} ${j}`);
-			}
-		}
-		res.end("About Page");
-	} else {
-		res.end("Error Page");
-	}
+  if (req.url === "/") {
+    res.end("Home Page");
+  } else if (req.url === "/about") {
+    // Blocking Code !!!
+    for (let i = 0; i < 1000; i++) {
+      for (let j = 0; j < 1000; j++) {
+        console.log(`${i} ${j}`);
+      }
+    }
+    res.end("About Page");
+  } else {
+    res.end("Error Page");
+  }
 });
 
 server.listen(3000, () => {
-	console.log("Server is listening on port 3000...");
+  console.log("Server is listening on port 3000...");
 });
 ```
 
 ### Promise
 
 ```javascript
-const { readFile } = require("fs");
+const {readFile} = require("fs");
 
 const getText = (path) => {
-	return new Promise((resolve, reject) => {
-		readFile(path, "utf8", (err, data) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(data);
-			}
-		});
-	});
+  return new Promise((resolve, reject) => {
+    readFile(path, "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
 };
 
 getText("./content/first.txt")
-	.then((result) => console.log(result))
-	.catch((err) => console.log(err));
+  .then((result) => console.log(result))
+  .catch((err) => console.log(err));
 ```
 
 ### Refactor to Async
 
 ```javascript
-const { readFile } = require("fs");
+const {readFile} = require("fs");
 
 const getText = (path) => {
-	return new Promise((resolve, reject) => {
-		readFile(path, "utf8", (err, data) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(data);
-			}
-		});
-	});
+  return new Promise((resolve, reject) => {
+    readFile(path, "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
 };
 
 const start = async () => {
-	try {
-		const first = await getText("./content/first.txt");
-		const second = await getText("./content/second.txt");
-		console.log(first, second);
-	} catch (err) {
-		console.log(err);
-	}
+  try {
+    const first = await getText("./content/first.txt");
+    const second = await getText("./content/second.txt");
+    console.log(first, second);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 start();
@@ -569,23 +569,23 @@ start();
 - Not using fs promise API
 
 ```javascript
-const { readFile, writeFile } = require("fs");
+const {readFile, writeFile} = require("fs");
 const util = require("util");
 const readFilePromise = util.promisify(readFile);
 const writeFilePromise = util.promisify(writeFile);
 
 const start = async () => {
-	try {
-		const first = await readFilePromise("./content/first.txt", "utf-8");
-		const second = await readFilePromise("./content/second.txt", "utf-8");
-		await writeFilePromise(
-			"./content/result-mind-grenade.txt",
-			`THIS IS AWESOME : ${first}, ${second}`
-		);
-		console.log(first, second);
-	} catch (error) {
-		console.log(error);
-	}
+  try {
+    const first = await readFilePromise("./content/first.txt", "utf-8");
+    const second = await readFilePromise("./content/second.txt", "utf-8");
+    await writeFilePromise(
+      "./content/result-mind-grenade.txt",
+      `THIS IS AWESOME : ${first}, ${second}`
+    );
+    console.log(first, second);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 start();
@@ -594,20 +594,20 @@ start();
 - using fs promise
 
 ```javascript
-const { readFile, writeFile } = require("fs").promises;
+const {readFile, writeFile} = require("fs").promises;
 
 const start = async () => {
-	try {
-		const first = await readFile("./content/first.txt", "utf-8");
-		const second = await readFile("./content/second.txt", "utf-8");
-		await writeFile(
-			"./content/result-mind-grenade.txt",
-			`THIS IS AWESOME : ${first}, ${second}`
-		);
-		console.log(first, second);
-	} catch (error) {
-		console.log(error);
-	}
+  try {
+    const first = await readFile("./content/first.txt", "utf-8");
+    const second = await readFile("./content/second.txt", "utf-8");
+    await writeFile(
+      "./content/result-mind-grenade.txt",
+      `THIS IS AWESOME : ${first}, ${second}`
+    );
+    console.log(first, second);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 start();
@@ -631,7 +631,7 @@ const customEmitter = new EventEmitter();
 
 ```javascript
 customEmitter.on("response", () => {
-	console.log("data received");
+  console.log("data received");
 });
 ```
 
@@ -656,11 +656,11 @@ const EventEmitter = require("events");
 const customEmitter = new EventEmitter();
 
 customEmitter.on("response", (name, id) => {
-	console.log(`data received user ${name} with id:${id}`);
+  console.log(`data received user ${name} with id:${id}`);
 });
 
 customEmitter.on("response", () => {
-	console.log("some other logic here");
+  console.log("some other logic here");
 });
 
 customEmitter.emit("response", "john", 34);
@@ -678,16 +678,12 @@ some other logic here
 ```javascript
 const http = require("http");
 
-// const server = http.createServer((req, res) => {
-//   res.end("Welcome");
-// });
-
 // Using Event Emitter API
 const server = http.createServer();
 // emits request event
 // subscribe to it / listen for it / respond to it
 server.on("request", (req, res) => {
-	res.end("Welcome");
+  res.end("Welcome");
 });
 
 server.listen(3000);
@@ -706,22 +702,22 @@ example continuous source or a big file streams come in real handy and now there
 - default size
 
 ```javascript
-const { createReadStream } = require("fs");
+const {createReadStream} = require("fs");
 const stream = createReadStream("./content/big.txt");
 
 stream.on("data", (result) => {
-	console.log(result);
+  console.log(result);
 });
 ```
 
 - control size &rarr; highWaterMark
 
 ```javascript
-const { createReadStream } = require("fs");
-const stream = createReadStream("./content/big.txt", { highWaterMark: 90000 });
+const {createReadStream} = require("fs");
+const stream = createReadStream("./content/big.txt", {highWaterMark: 90000});
 
 stream.on("data", (result) => {
-	console.log(result);
+  console.log(result);
 });
 stream.on("error", (err) => console.log(err));
 ```
@@ -729,11 +725,11 @@ stream.on("error", (err) => console.log(err));
 - last buffer &rarr; remainder
 
 ```javascript
-const { createReadStream } = require("fs");
-const stream = createReadStream("./content/big.txt", { encoding: "utf-8" });
+const {createReadStream} = require("fs");
+const stream = createReadStream("./content/big.txt", {encoding: "utf-8"});
 
 stream.on("data", (result) => {
-	console.log(result);
+  console.log(result);
 });
 stream.on("error", (err) => console.log(err));
 ```
@@ -745,16 +741,16 @@ const http = require("http");
 const fs = require("fs");
 
 http
-	.createServer((req, res) => {
-		const fileStream = fs.createReadStream("./content/big.txt", "utf-8");
-		fileStream.on("open", () => {
-			fileStream.pipe(res);
-		});
-		fileStream.on("error", (err) => {
-			res.end(err);
-		});
-	})
-	.listen(3000);
+  .createServer((req, res) => {
+    const fileStream = fs.createReadStream("./content/big.txt", "utf-8");
+    fileStream.on("open", () => {
+      fileStream.pipe(res);
+    });
+    fileStream.on("error", (err) => {
+      res.end(err);
+    });
+  })
+  .listen(3000);
 ```
 
 ## HTTP Request/Response Cycle
@@ -791,13 +787,13 @@ messages.
 - PUT (Update Data)
 - DELETE (Delete Data)
 
-| Methods | URL                                                          | Description                                |
-| ------- | ------------------------------------------------------------ | ------------------------------------------ |
-| GET     | [www.store.com/api/orders](www.store.com/api/orders)         | get all orders                             |
-| POST    | [www.store.com/api/orders](www.store.com/api/orders)         | place an order (send data)                 |
-| GET     | [www.store.com/api/orders/:id](www.store.com/api/orders/:id) | get single order (path params)             |
-| PUT     | [www.store.com/api/orders/:id](www.store.com/api/orders/:id) | update specific order (params + send data) |
-| DELETE  | [www.store.com/api/orders/:id](www.store.com/api/orders/:id) | delete order (path params)                 |
+| Methods | URL                          | Description                                |
+|---------|------------------------------|--------------------------------------------|
+| GET     | www.store.com/api/orders     | get all orders                             |
+| POST    | www.store.com/api/orders     | place an order (send data)                 |
+| GET     | www.store.com/api/orders/:id | get single order (path params)             |
+| PUT     | www.store.com/api/orders/:id | update specific order (params + send data) |
+| DELETE  | www.store.com/api/orders/:id | delete order (path params)                 |
 
 ## Express
 
@@ -806,7 +802,7 @@ Express.js is fast, unopinionated, minimalist web framework for Node.js.
 ### Express Methods
 
 | Method     | Description                                                                                                                                                        |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | app.get    | handle GET requests                                                                                                                                                |
 | app.post   | handle POST requests                                                                                                                                               |
 | app.put    | handle PUT requests                                                                                                                                                |
@@ -822,20 +818,20 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-	console.log("user hit the resources");
-	res.status(200).send("Home Page");
+  console.log("user hit the resources");
+  res.status(200).send("Home Page");
 });
 
 app.get("/about", (req, res) => {
-	res.status(200).send("About Page");
+  res.status(200).send("About Page");
 });
 
 app.all("*", (req, res) => {
-	res.status(404).send("<h1>resource not found</h1>");
+  res.status(404).send("<h1>resource not found</h1>");
 });
 
 app.listen(3000, () => {
-	console.log("server is listening on port 3000");
+  console.log("server is listening on port 3000");
 });
 ```
 
@@ -853,11 +849,11 @@ const app = express();
 app.use(express.static("./public"));
 
 app.all("*", (req, res) => {
-	res.status(404).send("resource not found");
+  res.status(404).send("resource not found");
 });
 
 app.listen(3000, () => {
-	console.log("server is listening on port 3000");
+  console.log("server is listening on port 3000");
 });
 ```
 
@@ -874,7 +870,7 @@ SSR is when you render your website's HTML on the server. This is as opposed to 
 website renders HTML in the browser by manipulating the DOM with JavaScript.
 
 | API        | SSR            |
-| ---------- | -------------- |
+|------------|----------------|
 | API - JSON | SSR - TEMPLATE |
 | SEND DATA  | SEND TEMPLATE  |
 | RES.JSON() | RES.RENDER()   |
@@ -886,7 +882,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-	res.json({ name: "Maung Maung", age: 30 });
+  res.json({name: "Maung Maung", age: 30});
 });
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
@@ -898,7 +894,7 @@ app.listen(3000, () => console.log("Server is listening on port 3000"));
 
 ```javascript
 app.get("/api/:paramname", (req, res) => {
-	const { paramname } = req.params;
+  const {paramname} = req.params;
 });
 ```
 
@@ -912,21 +908,21 @@ http://localhost:3000/api/paramname
 const express = require("express");
 const app = express();
 
-const { products } = require("./data.js");
+const {products} = require("./data.js");
 
 app.get("/", (req, res) => {
-	res.send("Hello World");
+  res.send("Hello World");
 });
 
 app.get("/api/products/:productID", (req, res) => {
-	const { productID } = req.params;
-	const singleProduct = products.find((p) => p.id === Number(productID));
+  const {productID} = req.params;
+  const singleProduct = products.find((p) => p.id === Number(productID));
 
-	if (!singleProduct) {
-		return res.status(404).send("Product does not exist");
-	}
+  if (!singleProduct) {
+    return res.status(404).send("Product does not exist");
+  }
 
-	return res.json(singleProduct);
+  return res.json(singleProduct);
 });
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
@@ -936,7 +932,7 @@ app.listen(3000, () => console.log("Server is listening on port 3000"));
 
 ```javascript
 app.get("/api/", (req, res) => {
-	const { queryname_1, queryname_2 } = req.query;
+  const {queryname_1, queryname_2} = req.query;
 });
 ```
 
@@ -956,16 +952,16 @@ const express = require("express");
 const app = express();
 
 const logger = (req, res, next) => {
-	const method = req.method;
-	const url = req.url;
-	const time = new Date().getFullYear();
+  const method = req.method;
+  const url = req.url;
+  const time = new Date().getFullYear();
 
-	console.log(method, url, time);
-	next();
+  console.log(method, url, time);
+  next();
 };
 
 app.get("/", logger, (req, res) => {
-	res.send("Home");
+  res.send("Home");
 });
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
@@ -978,18 +974,18 @@ const express = require("express");
 const app = express();
 
 const logger = (req, res, next) => {
-	const method = req.method;
-	const url = req.url;
-	const time = new Date().getFullYear();
+  const method = req.method;
+  const url = req.url;
+  const time = new Date().getFullYear();
 
-	console.log(method, url, time);
-	next();
+  console.log(method, url, time);
+  next();
 };
 
 app.use(logger);
 
 app.get("/", (req, res) => {
-	res.send("Home");
+  res.send("Home");
 });
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
@@ -1001,12 +997,12 @@ app.listen(3000, () => console.log("Server is listening on port 3000"));
 
 ```javascript
 const logger = (req, res, next) => {
-	const method = req.method;
-	const url = req.url;
-	const time = new Date().getFullYear();
+  const method = req.method;
+  const url = req.url;
+  const time = new Date().getFullYear();
 
-	console.log(method, url, time);
-	next();
+  console.log(method, url, time);
+  next();
 };
 
 module.exports = logger;
@@ -1016,17 +1012,17 @@ module.exports = logger;
 
 ```javascript
 const authorize = (req, res, next) => {
-	const { user } = req.query;
+  const {user} = req.query;
 
-	if (user === "john") {
-		req.user = { name: "john", id: 3 };
-		next();
-	} else {
-		res.status(401).send("Unauthorized");
-	}
+  if (user === "john") {
+    req.user = {name: "john", id: 3};
+    next();
+  } else {
+    res.status(401).send("Unauthorized");
+  }
 
-	console.log("authorize");
-	next();
+  console.log("authorize");
+  next();
 };
 
 module.exports = authorize;
@@ -1043,21 +1039,23 @@ const authorize = require("./authorize");
 app.use([logger, authorize]);
 
 app.get("/", (req, res) => {
-	res.send("Home");
+  res.send("Home")
 });
 
 app.get("/about", (req, res) => {
-	res.send("About");
+  res.send("About");
 });
 
 app.get("/api/products/", (req, res) => {
-	res.send("Products");
+  res.send("Products");
 });
 
 app.get("/api/items/", (req, res) => {
-	console.log(req.user);
-	res.send("Items");
+  console.log(req.user);
+  res.send("Items");
 });
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
 ```
+
+##
