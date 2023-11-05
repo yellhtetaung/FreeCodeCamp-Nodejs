@@ -23,12 +23,12 @@ V8 engine ဆိုတာ C++ နဲ့ ရေးထားတဲ့ chrome မ�
 ### How does working JavaScript Engine
 
 JavaScript engine သည် JavaScript code ကို run တဲ့ အချိန်မှာ C++ က JavaScript Code တွေကို ယူပြီးတော့ Assembly Code
-ပြောင်းပေးတယ်။​ ထို့နောက် Assembly code တွေကို Computer တွေနားလည်တဲ့ Machine Code ကိုပြောင်းပေးပါတယ်။
+ပြောင်းပေးတယ်။ ထို့နောက် Assembly code တွေကို Computer တွေနားလည်တဲ့ Machine Code ကိုပြောင်းပေးပါတယ်။
 
 ## Browser vs Node.js
 
 | Browser                 | Node.js                 |
-| ----------------------- | ----------------------- |
+|-------------------------|-------------------------|
 | DOM                     | No DOM                  |
 | Window                  | No Window               |
 | Interactive Application | Server Side Application |
@@ -43,7 +43,7 @@ nested it gets or whatever. I'll always have access to those variables and again
 the variables.
 
 | Global Variables | Description                                        |
-| :--------------- | :------------------------------------------------- |
+|:-----------------|:---------------------------------------------------|
 | \_\_dirname      | path to current directory                          |
 | \_\_filename     | file name                                          |
 | require          | function to use module (CommonJS)                  |
@@ -54,7 +54,7 @@ the variables.
 
 ### Export Module
 
-- [4-name.js](1-node-tutorial/04-names.js)
+- [4-name.js](01-node-tutorial/04-names.js)
 
 ```javascript
 // local
@@ -66,7 +66,7 @@ const peter = "peter";
 module.exports = {john, peter};
 ```
 
-- [05-utils.js](1-node-tutorial/05-utils.js)
+- [05-utils.js](01-node-tutorial/05-utils.js)
 
 ```javascript
 const sayHi = (name) => {
@@ -78,7 +78,7 @@ module.exports = sayHi;
 
 ### Import Module
 
-- [03-modules.js](1-node-tutorial/03-modules.js)
+- [03-modules.js](01-node-tutorial/03-modules.js)
 
 ```javascript
 const names = require("./04-names");
@@ -788,7 +788,7 @@ messages.
 - DELETE (Delete Data)
 
 | Methods | URL                          | Description                                |
-| ------- | ---------------------------- | ------------------------------------------ |
+|---------|------------------------------|--------------------------------------------|
 | GET     | www.store.com/api/orders     | get all orders                             |
 | POST    | www.store.com/api/orders     | place an order (send data)                 |
 | GET     | www.store.com/api/orders/:id | get single order (path params)             |
@@ -802,7 +802,7 @@ Express.js is fast, unopinionated, minimalist web framework for Node.js.
 ### Express Methods
 
 | Method     | Description                                                                                                                                                        |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | app.get    | handle GET requests                                                                                                                                                |
 | app.post   | handle POST requests                                                                                                                                               |
 | app.put    | handle PUT requests                                                                                                                                                |
@@ -870,7 +870,7 @@ SSR is when you render your website's HTML on the server. This is as opposed to 
 website renders HTML in the browser by manipulating the DOM with JavaScript.
 
 | API        | SSR            |
-| ---------- | -------------- |
+|------------|----------------|
 | API - JSON | SSR - TEMPLATE |
 | SEND DATA  | SEND TEMPLATE  |
 | RES.JSON() | RES.RENDER()   |
@@ -993,7 +993,7 @@ app.listen(3000, () => console.log("Server is listening on port 3000"));
 
 ### Multiple Middleware
 
-- [logger.js](./2-express-tutorial/logger.js)
+- [logger.js](./02-express-tutorial/logger.js)
 
 ```javascript
 const logger = (req, res, next) => {
@@ -1008,7 +1008,7 @@ const logger = (req, res, next) => {
 module.exports = logger;
 ```
 
-- [authorize.js](./2-express-tutorial/authorize.js)
+- [authorize.js](./02-express-tutorial/authorize.js)
 
 ```javascript
 const authorize = (req, res, next) => {
